@@ -196,7 +196,7 @@ oauthlib==3.2.2
     #   databricks-cli
     #   kubernetes
     #   requests-oauthlib
-ops==2.14.0
+ops==2.15.0
     # via
     #   charmed-kubeflow-chisme
     #   serialized-data-interface
