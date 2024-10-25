@@ -392,7 +392,7 @@ websocket-client==1.6.1
     #   ops
 websockets==8.1
     # via juju
-werkzeug==2.3.7
+werkzeug==3.0.6
     # via flask
 yarl==1.9.2
     # via aiohttp
