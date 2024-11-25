@@ -27,7 +27,9 @@ bcrypt==4.0.1
 blinker==1.6.2
     # via flask
 cachetools==5.3.1
-    # via google-auth
+    # via
+    #   google-auth
+    #   mlflow-skinny
 certifi==2023.7.22
     # via
     #   httpcore
@@ -47,28 +49,29 @@ charset-normalizer==3.2.0
     #   requests
 click==8.1.7
     # via
-    #   databricks-cli
     #   flask
-    #   mlflow
+    #   mlflow-skinny
 cloudpickle==2.2.1
-    # via mlflow
+    # via mlflow-skinny
 contourpy==1.1.0
     # via matplotlib
 cryptography==41.0.3
     # via paramiko
 cycler==0.11.0
     # via matplotlib
-databricks-cli==0.17.7
-    # via mlflow
+databricks-sdk==0.38.0
+    # via mlflow-skinny
 decorator==5.1.1
     # via
     #   ipdb
     #   ipython
 deepdiff==6.2.1
     # via charmed-kubeflow-chisme
+deprecated==1.2.15
+    # via
+    #   opentelemetry-api
+    #   opentelemetry-semantic-conventions
 docker==6.1.3
-    # via mlflow
-entrypoints==0.4
     # via mlflow
 exceptiongroup==1.1.2
     # via
@@ -87,9 +90,19 @@ frozenlist==1.4.0
 gitdb==4.0.10
     # via gitpython
 gitpython==3.1.35
-    # via mlflow
+    # via mlflow-skinny
 google-auth==2.22.0
-    # via kubernetes
+    # via
+    #   databricks-sdk
+    #   kubernetes
+graphene==3.4.3
+    # via mlflow
+graphql-core==3.2.5
+    # via
+    #   graphene
+    #   graphql-relay
+graphql-relay==3.2.0
+    # via graphene
 greenlet==3.0.3
     # via sqlalchemy
 gunicorn==21.2.0
@@ -113,7 +126,8 @@ importlib-metadata==6.8.0
     #   alembic
     #   flask
     #   markdown
-    #   mlflow
+    #   mlflow-skinny
+    #   opentelemetry-api
 importlib-resources==6.0.1
     # via
     #   alembic
@@ -174,8 +188,10 @@ matplotlib-inline==0.1.6
     # via ipython
 minio==7.1.16
     # via -r requirements-integration.in
-mlflow==2.6.0
+mlflow==2.16.0
     # via -r requirements-integration.in
+mlflow-skinny==2.16.0
+    # via mlflow
 multidict==6.0.4
     # via
     #   aiohttp
@@ -193,9 +209,17 @@ numpy==1.24.4
     #   scipy
 oauthlib==3.2.2
     # via
-    #   databricks-cli
     #   kubernetes
     #   requests-oauthlib
+opentelemetry-api==1.28.2
+    # via
+    #   mlflow-skinny
+    #   opentelemetry-sdk
+    #   opentelemetry-semantic-conventions
+opentelemetry-sdk==1.28.2
+    # via mlflow-skinny
+opentelemetry-semantic-conventions==0.49b2
+    # via opentelemetry-sdk
 ops==2.14.0
     # via
     #   charmed-kubeflow-chisme
@@ -207,7 +231,7 @@ packaging==23.1
     #   docker
     #   gunicorn
     #   matplotlib
-    #   mlflow
+    #   mlflow-skinny
     #   pytest
 pandas==2.0.3
     # via mlflow
@@ -230,7 +254,7 @@ prompt-toolkit==3.0.39
 protobuf==3.20.3
     # via
     #   macaroonbakery
-    #   mlflow
+    #   mlflow-skinny
 ptyprocess==0.7.0
     # via pexpect
 pure-eval==0.2.2
@@ -250,8 +274,6 @@ pygments==2.16.1
     # via ipython
 pyhcl==0.4.5
     # via hvac
-pyjwt==2.8.0
-    # via databricks-cli
 pymacaroons==0.13.0
     # via macaroonbakery
 pynacl==1.5.0
@@ -277,12 +299,12 @@ pytest-operator==0.29.0
     # via -r requirements-integration.in
 python-dateutil==2.8.2
     # via
+    #   graphene
     #   kubernetes
     #   matplotlib
     #   pandas
 pytz==2023.3.post1
     # via
-    #   mlflow
     #   pandas
     #   pyrfc3339
 pyyaml==6.0.1
@@ -290,21 +312,19 @@ pyyaml==6.0.1
     #   juju
     #   kubernetes
     #   lightkube
-    #   mlflow
+    #   mlflow-skinny
     #   ops
     #   pytest-operator
     #   serialized-data-interface
-querystring-parser==1.2.4
-    # via mlflow
 requests==2.31.0
     # via
     #   -r requirements-integration.in
-    #   databricks-cli
+    #   databricks-sdk
     #   docker
     #   hvac
     #   kubernetes
     #   macaroonbakery
-    #   mlflow
+    #   mlflow-skinny
     #   requests-oauthlib
     #   serialized-data-interface
 requests-oauthlib==1.3.1
@@ -326,14 +346,12 @@ serialized-data-interface==0.7.0
 six==1.16.0
     # via
     #   asttokens
-    #   databricks-cli
     #   google-auth
     #   kubernetes
     #   macaroonbakery
     #   paramiko
     #   pymacaroons
     #   python-dateutil
-    #   querystring-parser
 smmap==5.0.0
     # via gitdb
 sniffio==1.3.0
@@ -346,11 +364,9 @@ sqlalchemy==2.0.20
     #   alembic
     #   mlflow
 sqlparse==0.4.4
-    # via mlflow
+    # via mlflow-skinny
 stack-data==0.6.2
     # via ipython
-tabulate==0.9.0
-    # via databricks-cli
 tenacity==8.2.2
     # via charmed-kubeflow-chisme
 threadpoolctl==3.2.0
@@ -368,7 +384,10 @@ traitlets==5.9.0
 typing-extensions==4.7.1
     # via
     #   alembic
+    #   graphene
+    #   graphql-core
     #   ipython
+    #   opentelemetry-sdk
     #   sqlalchemy
     #   typing-inspect
 typing-inspect==0.9.0
@@ -377,7 +396,6 @@ tzdata==2023.3
     # via pandas
 urllib3==1.26.16
     # via
-    #   databricks-cli
     #   docker
     #   google-auth
     #   kubernetes
@@ -394,6 +412,8 @@ websockets==8.1
     # via juju
 werkzeug==2.3.7
     # via flask
+wrapt==1.17.0
+    # via deprecated
 yarl==1.9.2
     # via aiohttp
 zipp==3.16.2
